@@ -6,6 +6,13 @@ import { AppComponent } from './app.component';
 import { CabeceroComponent } from './componentes/cabecero/cabecero.component';
 import { PiePaginaComponent } from './componentes/pie-pagina/pie-pagina.component';
 import { InicioComponent } from './componentes/inicio/inicio.component';
+import { FirestoreService } from './Servicios/firestore.service';
+import { environment } from '../environments/environment';
+
+// Firestore
+import { AngularFireModule } from '@angular/fire/compat/';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 @NgModule({
   declarations: [
@@ -16,9 +23,14 @@ import { InicioComponent } from './componentes/inicio/inicio.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase, 'mis-listas'),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
   ],
-  providers: [],
+  providers: [
+    FirestoreService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,25 +2,15 @@
     <div class="container mt-3">
         <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#nuevaListaModal">Nueva lista</button>
         <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action">
+            <a href="#" class="list-group-item list-group-item-action" *ngFor="let lista of listas">
                 <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">Lista 1</h5>
+                    <h5 class="mb-1">{{ lista.nombre }}</h5>
                     <div>
                         <button type="button" class="btn btn-outline-dark">Editar</button>
                         <button type="button" class="btn btn-outline-danger">Eliminar</button>
                     </div>
                 </div>
-                <small class="text-muted">Descripción lista 1</small>
-            </a>
-            <a href="#" class="list-group-item list-group-item-action">
-                <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">Lista 2</h5>
-                    <div>
-                        <button type="button" class="btn btn-outline-dark">Editar</button>
-                        <button type="button" class="btn btn-outline-danger">Eliminar</button>
-                    </div>
-                </div>
-                <small class="text-muted">Descripción lista 2</small>
+                <small class="text-muted">{{ lista.descripcion }}</small>
             </a>
         </div>
     </div>
