@@ -1,0 +1,55 @@
+<section id="listado-listas">
+    <div class="container mt-3">
+        <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#nuevaListaModal">Nueva lista</button>
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">Lista 1</h5>
+                    <div>
+                        <button type="button" class="btn btn-outline-dark">Editar</button>
+                        <button type="button" class="btn btn-outline-danger">Eliminar</button>
+                    </div>
+                </div>
+                <small class="text-muted">Descripción lista 1</small>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">Lista 2</h5>
+                    <div>
+                        <button type="button" class="btn btn-outline-dark">Editar</button>
+                        <button type="button" class="btn btn-outline-danger">Eliminar</button>
+                    </div>
+                </div>
+                <small class="text-muted">Descripción lista 2</small>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="nuevaListaModal" tabindex="-1" aria-labelledby="nuevaListaLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="nuevaListaLabel">Nueva lista</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="nombreLista" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombreLista">
+                    </div>
+                    <div class="mb-3">
+                        <label for="descripcionLista" class="form-label">Descripción</label>
+                        <input type="text" class="form-control" id="descripcionLista">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Atrás</button>
+                <button type="button" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
