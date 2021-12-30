@@ -22,23 +22,44 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="nuevaListaLabel">Nueva lista</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #botonCerrar></button>
             </div>
             <div class="modal-body">
-                <form>
+                <flash-messages></flash-messages>
+                <form #listaForm="ngForm" (ngSubmit)="agregarLista(listaForm.form)">
                     <div class="mb-3">
-                        <label for="nombreLista" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombreLista">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            id="nombre" 
+                            name="nombre"
+                            required 
+                            [(ngModel)] = "lista.nombre"
+                            #nombre = "ngModel"
+                            [ngClass]="{'is-invalid': nombre.errors && nombre.touched}"
+                        >
+                        <div [hidden]="!nombre.errors?.['required']" class="invalid-feedback">Por favor ingresa el nombre</div>
                     </div>
                     <div class="mb-3">
-                        <label for="descripcionLista" class="form-label">Descripción</label>
-                        <input type="text" class="form-control" id="descripcionLista">
+                        <label for="descripcion" class="form-label">Descripción</label>
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            id="descripcion" 
+                            name="descripcion"
+                            required 
+                            [(ngModel)] = "lista.descripcion"
+                            #descripcion = "ngModel"
+                            [ngClass]="{'is-invalid': descripcion.errors && descripcion.touched}"
+                        >
+                        <div [hidden]="!descripcion.errors?.['required']" class="invalid-feedback">Por favor ingresa la descripción</div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Atrás</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
                     </div>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Atrás</button>
-                <button type="button" class="btn btn-primary">Guardar</button>
             </div>
         </div>
     </div>

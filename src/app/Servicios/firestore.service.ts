@@ -26,4 +26,8 @@ export class FirestoreService{
 
         return this.listas;
     }
+
+    addLista(lista: Lista){
+        this.listasColeccion.add(lista);
+    }
 }

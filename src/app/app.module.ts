@@ -14,6 +14,9 @@ import { AngularFireModule } from '@angular/fire/compat/';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
+import { FlashMessagesModule } from 'angular2-flash-messages';
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +30,8 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
     AngularFireModule.initializeApp(environment.firebase, 'mis-listas'),
     AngularFirestoreModule,
     AngularFireAuthModule,
+    FlashMessagesModule.forRoot(),
+    FormsModule
   ],
   providers: [
     FirestoreService,
