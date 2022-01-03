@@ -1,5 +1,5 @@
 export interface Lista{
-    usuario: string;
+    id: string;
     nombre: string;
     descripcion: string;
 }

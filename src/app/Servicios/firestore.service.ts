@@ -10,7 +10,7 @@ export class FirestoreService{
     listas: Observable<Lista[]>;
 
     constructor(private afs: AngularFirestore){
-        this.listasColeccion = afs.collection('listas', ref => ref.orderBy('nombre','asc'));
+        this.listasColeccion = afs.collection('usuarios').doc('ferchofpz@hotmail.com').collection('listas', ref => ref.orderBy('id', 'asc'));
     }
 
     getListas(): Observable<Lista[]>{
@@ -28,6 +28,15 @@ export class FirestoreService{
     }
 
     addLista(lista: Lista){
-        this.listasColeccion.add(lista);
+        this.listasColeccion.doc(lista.id).set(lista);
+    }
+
+    editLista(lista: Lista){
+        this.listasColeccion.doc(lista.id).update(lista);
+    }
+
+    deleteLista(id: string){
+        this.listasColeccion.doc(id).delete();
+        // TO DO: Eliminar la subcolección items en server-side
     }
 }
