@@ -1,0 +1,10 @@
+<section id="items">
+    <div class="container">
+        <button type="button" class="btn btn-outline-secondary mt-3" routerLink="/">Atrás</button>
+        <button type="button" class="btn btn-primary mt-3">Nuevo item</button>
+
+        <ul class="list-group mt-3">
+            <li class="list-group-item" *ngFor="let item of items.items">{{ item }}</li>
+          </ul>
+    </div>
+</section>

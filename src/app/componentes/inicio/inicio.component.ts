@@ -21,6 +21,7 @@ export class InicioComponent implements OnInit {
   @ViewChild("listaForm") listaForm: NgForm;
   @ViewChild("botonCerrarNew") botonCerrarNew: ElementRef;
   @ViewChild("botonCerrarEdit") botonCerrarEdit: ElementRef;
+  @ViewChild("botonCerrarConfirmar") botonCerrarConfirmar: ElementRef;
 
   @Input() indice: number = 0;
 
@@ -64,7 +65,8 @@ export class InicioComponent implements OnInit {
     }
   }
 
-  eliminarLista(i: number){
-    this.firestoreService.deleteLista((i+1).toString());
+  eliminarLista(){
+    this.firestoreService.deleteLista((this.indice+1).toString());
+    this.botonCerrarConfirmar.nativeElement.click();
   }
 }

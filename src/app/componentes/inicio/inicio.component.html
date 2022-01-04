@@ -2,12 +2,12 @@
     <div class="container mt-3">
         <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#nuevaListaModal" (click)="lista = {id:'',nombre:'',descripcion:''}">Nueva lista</button>
         <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action" *ngFor="let lista of listas; let i = index">
+            <a routerLink="/items/{{lista.id}}" class="list-group-item list-group-item-action" *ngFor="let lista of listas; let i = index">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">{{ lista.nombre }}</h5>
                     <div>
                         <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#editarListaModal" (click)="indice = i; cargarDatos()">Editar</button>
-                        <button type="button" class="btn btn-outline-danger" (click)="eliminarLista(i)">Eliminar</button>
+                        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#confirmacionModal" (click)="indice = i; cargarDatos()">Eliminar</button>
                     </div>
                 </div>
                 <small class="text-muted">{{ lista.descripcion }}</small>
@@ -113,3 +113,22 @@
         </div>
     </div>
 </div>
+
+<!-- Confirmación modal -->
+  <div class="modal fade" id="confirmacionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Eliminar lista</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #botonCerrarConfirmar></button>
+        </div>
+        <div class="modal-body">
+          Seguro que desea eliminar {{lista.nombre}}?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" (click)="eliminarLista()">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>

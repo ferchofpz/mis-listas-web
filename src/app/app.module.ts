@@ -16,13 +16,15 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { FormsModule } from '@angular/forms';
+import { ItemsComponent } from './componentes/items/items.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CabeceroComponent,
     PiePaginaComponent,
-    InicioComponent
+    InicioComponent,
+    ItemsComponent
   ],
   imports: [
     BrowserModule,

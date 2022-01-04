@@ -3,11 +3,15 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/comp
 import { Observable } from "rxjs";
 import { Lista } from "../Modelos/lista.model";
 import { map } from 'rxjs/operators';
+import { Items } from "../Modelos/items.model";
 
 @Injectable()
 export class FirestoreService{
     listasColeccion: AngularFirestoreCollection<Lista>;
     listas: Observable<Lista[]>;
+
+    itemsColeccion: AngularFirestoreCollection<Items>;
+    items: Observable<Items[]>;
 
     constructor(private afs: AngularFirestore){
         this.listasColeccion = afs.collection('usuarios').doc('ferchofpz@hotmail.com').collection('listas', ref => ref.orderBy('id', 'asc'));
@@ -38,5 +42,23 @@ export class FirestoreService{
     deleteLista(id: string){
         this.listasColeccion.doc(id).delete();
         // TO DO: Eliminar la subcolección items en server-side
+    }
+
+    getItems(idLista:string): Observable<Items[]>{
+        this.itemsColeccion = this.afs.collection('usuarios').doc('ferchofpz@hotmail.com').collection('listas').doc(idLista).collection('items');
+
+        this.items = this.itemsColeccion.snapshotChanges().pipe(
+            map(cambios => {
+                return cambios.map(
+                    accion => {
+                        const datos = accion.payload.doc.data() as Items;
+                        return datos;
+                    }
+                )
+            }
+            )
+        );
+
+        return this.items;
     }
 }
