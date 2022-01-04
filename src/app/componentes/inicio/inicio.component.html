@@ -5,10 +5,10 @@
             <a routerLink="/items/{{lista.id}}" class="list-group-item list-group-item-action" *ngFor="let lista of listas; let i = index">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">{{ lista.nombre }}</h5>
-                    <div>
+                    <!-- <div>
                         <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#editarListaModal" (click)="indice = i; cargarDatos()">Editar</button>
                         <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#confirmacionModal" (click)="indice = i; cargarDatos()">Eliminar</button>
-                    </div>
+                    </div> -->
                 </div>
                 <small class="text-muted">{{ lista.descripcion }}</small>
             </a>
@@ -64,71 +64,3 @@
         </div>
     </div>
 </div>
-
-<!-- Editar lista modal -->
-<div class="modal fade" id="editarListaModal" tabindex="-1" aria-labelledby="editarListaLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editarListaLabel">Editar lista</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #botonCerrarEdit></button>
-            </div>
-            <div class="modal-body">
-                <flash-messages></flash-messages>
-                <form #listaForm="ngForm" (ngSubmit)="editarLista(listaForm.form)">
-                    <div class="mb-3">
-                        <label for="nombre" class="form-label">Nombre</label>
-                        <input 
-                            type="text" 
-                            class="form-control" 
-                            id="nombre" 
-                            name="nombre"
-                            required 
-                            [(ngModel)] = "lista.nombre"
-                            #nombre = "ngModel"
-                            [ngClass]="{'is-invalid': nombre.errors && nombre.touched}"
-                        >
-                        <div [hidden]="!nombre.errors?.['required']" class="invalid-feedback">Por favor ingresa el nombre</div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="descripcion" class="form-label">Descripción</label>
-                        <input 
-                            type="text" 
-                            class="form-control" 
-                            id="descripcion" 
-                            name="descripcion"
-                            required 
-                            [(ngModel)] = "lista.descripcion"
-                            #descripcion = "ngModel"
-                            [ngClass]="{'is-invalid': descripcion.errors && descripcion.touched}"
-                        >
-                        <div [hidden]="!descripcion.errors?.['required']" class="invalid-feedback">Por favor ingresa la descripción</div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Atrás</button>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Confirmación modal -->
-  <div class="modal fade" id="confirmacionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Eliminar lista</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #botonCerrarConfirmar></button>
-        </div>
-        <div class="modal-body">
-          Seguro que desea eliminar {{lista.nombre}}?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary" (click)="eliminarLista()">Eliminar</button>
-        </div>
-      </div>
-    </div>
-  </div>

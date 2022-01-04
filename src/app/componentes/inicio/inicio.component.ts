@@ -20,8 +20,6 @@ export class InicioComponent implements OnInit {
 
   @ViewChild("listaForm") listaForm: NgForm;
   @ViewChild("botonCerrarNew") botonCerrarNew: ElementRef;
-  @ViewChild("botonCerrarEdit") botonCerrarEdit: ElementRef;
-  @ViewChild("botonCerrarConfirmar") botonCerrarConfirmar: ElementRef;
 
   @Input() indice: number = 0;
 
@@ -31,6 +29,11 @@ export class InicioComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.listas = [{
+      id: '',
+      nombre: '',
+      descripcion: ''
+    }];
     this.firestoreService.getListas().subscribe(
       listas => this.listas = listas
     );
@@ -48,25 +51,9 @@ export class InicioComponent implements OnInit {
     this.listaForm.resetForm();
   }
 
-  cargarDatos(){
-    this.lista.nombre = this.listas[this.indice].nombre;
-    this.lista.descripcion = this.listas[this.indice].descripcion;
-    this.lista.id = this.listas[this.indice].id;
-  }
-
-  editarLista({value, valid}: {value:Lista, valid: boolean}){
-    if(!valid){
-      this.flashMessages.show('Los datos ingresados no son válidos',{cssClass: 'alert-danger',timeout: 4000})
-    }
-    else{
-      value.id = (this.indice + 1).toString();
-      this.firestoreService.editLista(value);
-      this.botonCerrarEdit.nativeElement.click();
-    }
-  }
-
-  eliminarLista(){
-    this.firestoreService.deleteLista((this.indice+1).toString());
-    this.botonCerrarConfirmar.nativeElement.click();
-  }
+  // cargarDatos(){
+  //   this.lista.nombre = this.listas[this.indice].nombre;
+  //   this.lista.descripcion = this.listas[this.indice].descripcion;
+  //   this.lista.id = this.listas[this.indice].id;
+  // }
 }
